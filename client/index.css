@@ -1,0 +1,19 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+span {
+    font-size: 16px;
+}
+
+div.chat-message:hover {
+    background: aliceblue;
+}
+
+#container {
+    margin: auto;
+    width: 90%;
+    height: 80%;
+}

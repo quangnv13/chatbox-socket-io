@@ -4,7 +4,7 @@ A simple web application using Nodejs and Socket.io for realtime chatbox.
 # How to use
 1. First you need a server(vps, cloud,...).
 2. Pull my project.
-3. Run <npm run start>.
+3. Run ```npm run start```.
 4. Enjoy...
   
 # More
