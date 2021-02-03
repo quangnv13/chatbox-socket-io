@@ -8,9 +8,26 @@ const avatarProfileImg = document.getElementById('avatar-profile');
 const displayNameProfileInput = document.getElementById('display-name-input');
 const avatarProfileInput = document.getElementById('avatar-input');
 
-socket.on('message', messages => {
-    renderChat(messages);
+let displayNameProfile = 'Guest';
+let avatar = './image/guest.jpg';
+
+socket.on('message', messageList => {
+    renderChat(messageList);
 });
+
+socket.on('new-message', newMessage => {
+    renderChat([...newMessage]);
+})
+
+function chat() {
+    const message = {
+        id: makeChatId(),
+        displayName: displayNameProfile,
+        avatar: avatar,
+        message: chatInput.value
+    }
+    socket.emit('chat', message);
+}
 
 function renderChat(newMessages = []) {
     let flag = document.createDocumentFragment();
