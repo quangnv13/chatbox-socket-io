@@ -43,7 +43,7 @@ socket.on("connect", () => {
   };
 
   socket.on('old-messages', oldMessages => {
-    renderOldChat([...[], oldMessages]);
+    renderOldChat(oldMessages);
   });
 });
 
@@ -104,9 +104,9 @@ function renderChat(newMessages = []) {
   chatMessagesDiv.appendChild(flag);
 }
 
-function renderOldChat(newMessages = []) {
+function renderOldChat(oldMessages = []) {
     let flag = document.createDocumentFragment();
-    newMessages.forEach((message) => {
+    oldMessages.forEach((message) => {
       let wrapperDiv = document.createElement("div");
       wrapperDiv.className += "p-2 border mt-2 chat-message";
       wrapperDiv.id = message.id;

@@ -21,7 +21,6 @@ io.on("connection", (socket) => {
   socket.on("online", (user) => {
     onlineUsers = [...onlineUsers, user];
     io.emit("user-online-changed", onlineUsers);
-    console.log(onlineUsers);
   });
 
   socket.on("update-profile", (user) => {
@@ -33,7 +32,6 @@ io.on("connection", (socket) => {
   io.to(socket.id).emit("message", db.get("messages").takeRight(50));
 
   socket.on("disconnect", () => {
-    console.log(`Client id: ${socket.id} is disconnected`);
     onlineUsers = onlineUsers.filter((ol) => ol.socketId !== socket.id);
     io.emit("user-online-changed", onlineUsers);
   });
@@ -42,7 +40,9 @@ io.on("connection", (socket) => {
     const index = db.get("messages").findIndex(id);
     io.to(socket.id).emit(
       "old-messages",
-      db.get("messages").slice(index - 50, index)
+      db
+        .get("messages")
+        .reverse().take(50)
     );
   });
 
