@@ -809,6 +809,12 @@
       "displayName": "Guest test",
       "avatar": "gggg",
       "message": "test"
+    },
+    {
+      "id": "/ej!kbu?4CP1vv9",
+      "displayName": "Guest",
+      "avatar": "./image/guest.png",
+      "message": "gggggggggg"
     }
   ]
 }

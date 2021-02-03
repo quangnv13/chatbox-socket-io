@@ -25,7 +25,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("update-profile", (user) => {
-    const index = onlineUsers.findIndex(ol => ol.socketId === user.socketId);
+    const index = onlineUsers.findIndex((ol) => ol.socketId === user.socketId);
     onlineUsers[index] = user;
     io.emit("user-online-changed", onlineUsers);
   });
@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log(`Client id: ${socket.id} is disconnected`);
-    onlineUsers = onlineUsers.filter(ol => ol.socketId !== socket.id);
+    onlineUsers = onlineUsers.filter((ol) => ol.socketId !== socket.id);
     io.emit("user-online-changed", onlineUsers);
   });
 

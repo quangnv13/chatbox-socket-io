@@ -37,11 +37,14 @@ socket.on("connect", () => {
 
   chatMessagesDiv.onscroll = () => {
     const idFirstMessage = chatMessagesDiv.children[0].id;
-    console.log(idFirstMessage);
-    // if (chatMessagesDiv.scrollTop === 0) {
-    //     socket.emit('get-old-messages', )
-    // }
+    if (chatMessagesDiv.scrollTop === 0) {
+        socket.emit('get-old-messages', idFirstMessage);
+    }
   };
+
+  socket.on('old-messages', oldMessages => {
+    renderOldChat([...[], oldMessages]);
+  });
 });
 
 function chat() {
@@ -100,6 +103,33 @@ function renderChat(newMessages = []) {
   });
   chatMessagesDiv.appendChild(flag);
 }
+
+function renderOldChat(newMessages = []) {
+    let flag = document.createDocumentFragment();
+    newMessages.forEach((message) => {
+      let wrapperDiv = document.createElement("div");
+      wrapperDiv.className += "p-2 border mt-2 chat-message";
+      wrapperDiv.id = message.id;
+  
+      let avatarImg = document.createElement("img");
+      avatarImg.width = 40;
+      avatarImg.className += "rounded-circle img-thumbnail mr-2";
+      avatarImg.src = message.avatar;
+      wrapperDiv.appendChild(avatarImg);
+  
+      let displayNameSpan = document.createElement("span");
+      displayNameSpan.textContent = " " + message.displayName + ": ";
+      displayNameSpan.style.fontWeight = 600;
+      wrapperDiv.appendChild(displayNameSpan);
+  
+      let messageSpan = document.createElement("span");
+      messageSpan.textContent = message.message;
+      wrapperDiv.appendChild(messageSpan);
+  
+      flag.appendChild(wrapperDiv);
+    });
+    chatMessagesDiv.prepend(flag);
+  }
 
 function renderOnlineUsers(onlineUsers = []) {
   onlineUsersDiv.innerHTML = "";
