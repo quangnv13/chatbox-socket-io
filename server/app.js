@@ -17,14 +17,13 @@ server.listen(3000).on("listening", () => {
 
 io.on("connection", (socket) => {
   console.log(`New client connect id: ${socket.id}`);
-  io.to(socket.id).emit("message", db.get("messages").slice(0, 50));
+  io.to(socket.id).emit("message", db.get("messages").takeRight(50));
 
   socket.on("disconnect", () => {
     console.log(`Client id: ${socket.id} is disconnected`);
   });
 
   socket.on("get-old-messages", (id) => {
-    console.log(id);
     const index = db.get("messages").findIndex(id);
     io.to(socket.id).emit(
       "old-messages",
@@ -33,10 +32,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("chat", (message) => {
-    console.log(message);
     if (!message.avatar) {
       message.avatar =
-        "https://www.hostpapa.com/knowledgebase/wp-content/uploads/2018/04/1-13.png";
+        "guest.png";
     }
     db.get("messages").push(message).write();
     io.emit("new-message", message);
