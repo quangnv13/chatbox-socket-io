@@ -7,6 +7,7 @@ const displayNameProfileLabel = document.getElementById("display-name-profile");
 const avatarProfileImg = document.getElementById("avatar-profile");
 const displayNameProfileInput = document.getElementById("display-name-input");
 const avatarProfileInput = document.getElementById("avatar-input");
+const updatedNofity = document.getElementById('updated-notify');
 
 let displayNameProfile = "Guest";
 let avatar = "./image/guest.png";
@@ -32,6 +33,19 @@ function chat() {
   };
   socket.emit("chat", message);
   chatInput.value = "";
+}
+
+function updateProfile() {
+    displayNameProfile = displayNameProfileInput.value;
+    avatar = avatarProfileInput.value;
+
+    displayNameProfileLabel.textContent = displayNameProfile;
+    avatarProfileImg.src = avatar;
+    
+    updatedNofity.hidden =  false;
+    setTimeout(() => {
+        updatedNofity.hidden =  true;
+    }, 3000);
 }
 
 function renderChat(newMessages = []) {
