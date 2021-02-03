@@ -11,16 +11,31 @@ const io = socketio(server, {
   },
 });
 
+let onlineUsers = [];
+
 server.listen(3000).on("listening", () => {
   console.info("Chatbox server is listening on port 3000");
 });
 
 io.on("connection", (socket) => {
-  console.log(`New client connect id: ${socket.id}`);
+  socket.on("online", (user) => {
+    onlineUsers = [...onlineUsers, user];
+    io.emit("user-online-changed", onlineUsers);
+    console.log(onlineUsers);
+  });
+
+  socket.on("update-profile", (user) => {
+    const index = onlineUsers.findIndex(ol => ol.socketId === user.socketId);
+    onlineUsers[index] = user;
+    io.emit("user-online-changed", onlineUsers);
+  });
+
   io.to(socket.id).emit("message", db.get("messages").takeRight(50));
 
   socket.on("disconnect", () => {
     console.log(`Client id: ${socket.id} is disconnected`);
+    onlineUsers = onlineUsers.filter(ol => ol.socketId !== socket.id);
+    io.emit("user-online-changed", onlineUsers);
   });
 
   socket.on("get-old-messages", (id) => {
@@ -33,8 +48,7 @@ io.on("connection", (socket) => {
 
   socket.on("chat", (message) => {
     if (!message.avatar) {
-      message.avatar =
-        "guest.png";
+      message.avatar = "guest.png";
     }
     db.get("messages").push(message).write();
     io.emit("new-message", message);
