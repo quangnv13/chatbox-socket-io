@@ -2,9 +2,9 @@ FROM node:12
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY server/package*.json server/
 
-RUN npm i
+RUN cd server && npm i
 
 COPY . .
 
