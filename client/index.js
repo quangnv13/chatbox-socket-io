@@ -1,4 +1,4 @@
-const socket = io("ws://127.0.0.1:3000");
+const socket = io();
 
 const chatMessagesDiv = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
@@ -67,6 +67,9 @@ function chat() {
 function updateProfile() {
   displayNameProfile = displayNameProfileInput.value;
   avatar = avatarProfileInput.value;
+  if(!avatar) {
+    avatar = './image/guest.png';
+  }
 
   displayNameProfileLabel.textContent = displayNameProfile;
   avatarProfileImg.src = avatar;
@@ -96,7 +99,9 @@ async function renderChat(newMessages = [], isNewMessage = false) {
     wrapperDiv.id = message.id;
 
     let avatarImg = document.createElement("img");
-    avatarImg.width = 40;
+    avatarImg.style.width = '40px';
+    avatarImg.style.height = '40px';
+    avatarImg.style.objectFit = 'cover';
     avatarImg.className += "rounded-circle img-thumbnail mr-2";
     avatarImg.src = message.avatar;
     wrapperDiv.appendChild(avatarImg);
@@ -122,7 +127,9 @@ async function renderOldChat(oldMessages = []) {
     wrapperDiv.id = message.id;
 
     let avatarImg = document.createElement("img");
-    avatarImg.width = 40;
+    avatarImg.style.width = '40px';
+    avatarImg.style.height = '40px';
+    avatarImg.style.objectFit = 'cover';
     avatarImg.className += "rounded-circle img-thumbnail mr-2";
     avatarImg.src = message.avatar;
     wrapperDiv.appendChild(avatarImg);
@@ -148,7 +155,10 @@ function renderOnlineUsers(onlineUsers = []) {
     wrapperDiv.className = "m-1";
 
     let avatarImg = document.createElement("img");
-    avatarImg.width = 40;
+    avatarImg.style.width = '40px';
+    avatarImg.style.height = '40px';
+    avatarImg.style.objectFit = 'cover';
+    avatarImg.style.marginRight = '5px'
     avatarImg.className += "rounded-circle img-thumbnail mr-2";
     avatarImg.src = user.avatar;
     wrapperDiv.appendChild(avatarImg);

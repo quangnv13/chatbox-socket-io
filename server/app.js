@@ -13,7 +13,7 @@ const io = socketio(server, {
 let onlineUsers = [];
 
 app.use(express.static('../client'));
-server.listen(3000).on("listening", () => {
+server.listen(8080).on("listening", () => {
   console.info("Chatbox server is listening on port 3000");
 });
 
@@ -25,6 +25,9 @@ io.on("connection", (socket) => {
 
   socket.on("update-profile", (user) => {
     const index = onlineUsers.findIndex((ol) => ol.socketId === user.socketId);
+    if(!user.avatar) {
+      user.avatar = './image/guest.png';
+    }
     onlineUsers[index] = user;
     io.emit("user-online-changed", onlineUsers);
   });

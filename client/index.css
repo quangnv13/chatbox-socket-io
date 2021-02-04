@@ -29,3 +29,9 @@ span {
 .chat-message:hover {
   background: aliceblue;
 }
+
+#avatar-profile {
+  width:70px; 
+  height:70px; 
+  object-fit: cover;
+}
