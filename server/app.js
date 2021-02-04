@@ -12,6 +12,7 @@ const io = socketio(server, {
 
 let onlineUsers = [];
 
+app.use(express.static('../client'));
 server.listen(3000).on("listening", () => {
   console.info("Chatbox server is listening on port 3000");
 });
