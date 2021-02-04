@@ -2,7 +2,6 @@ const express = require("express");
 const http = require("http");
 const socketio = require("socket.io");
 const db = require("./db");
-
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
@@ -36,14 +35,15 @@ io.on("connection", (socket) => {
     io.emit("user-online-changed", onlineUsers);
   });
 
-  socket.on("get-old-messages", (id) => {
-    const index = db.get("messages").findIndex(id);
-    io.to(socket.id).emit(
-      "old-messages",
-      db
-        .get("messages")
-        .reverse().take(50)
-    );
+  socket.on("get-old-messages", id => {
+    const messages = db.get("messages").cloneDeep().reverse();
+    const index = messages.findIndex(m => m.id === id).value();
+    if(index >= 0) {
+      io.to(socket.id).emit(
+        "old-messages",
+        messages.slice(index + 1, index + 51)
+      );
+    }
   });
 
   socket.on("chat", (message) => {

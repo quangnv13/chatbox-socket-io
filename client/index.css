@@ -1,19 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#container {
+  margin: auto;
+  width: 90%;
+  height: 80%;
+}
+
+#chat-messages {
+  height: 90%;
+  overflow: auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 span {
-    font-size: 16px;
+  font-size: 16px;
 }
 
-div.chat-message:hover {
-    background: aliceblue;
-}
-
-#container {
-    margin: auto;
-    width: 90%;
-    height: 80%;
+.chat-message:hover {
+  background: aliceblue;
 }

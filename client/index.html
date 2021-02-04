@@ -4,6 +4,7 @@
 
 <head>
     <link href="./lib/bootstrap.min.css" rel="stylesheet">
+    <link href="./lib/animation.min.css" rel="stylesheet">
     <script src="./lib/bootstrap.min.js"></script>
     <script src="./lib/socket.io-client.min.js"></script>
     <link rel="stylesheet" href="index.css">
@@ -11,10 +12,10 @@
 
 <body>
     <div class="card" id="container">
-        <h1 class="text-center mt-2" style="height: 10%;">Head</h1>
+        <h1 class="text-center mt-2" style="height: 10%;">Chatbox</h1>
         <div class="row w-100 m-0" style="height: 90%;">
             <div class="col-md-8 border h-100">
-                <div id="chat-messages" style="height: 90%; overflow: auto; border-bottom: 1px solid rgba(0,0,0,.125);">
+                <div id="chat-messages">
                 </div>
                 <div class="d-flex mt-3">
                     <input class="form-control" id="chat-input"><button class="btn btn-success" type="submit"
@@ -45,6 +46,7 @@
             </div>
         </div>
     </div>
+    <footer class="text-center">Coded by <a target="blank" href="https://quangnguyen.info">Quang Nguyễn Blog</a> - 2021</footer>
 </body>
 
 <script src="index.js"></script>
