@@ -1,0 +1,16 @@
+{
+  "messages": [
+    {
+      "id": "thefirstchat",
+      "displayName": "Quang Nguyễn",
+      "avatar": "https://en.gravatar.com/userimage/174280519/67c161a7d11df7d4c20d489da3525883.jpg",
+      "message": "Welcome to my chatbox"
+    },
+    {
+      "id": "RjrKVWuY+A!b38z",
+      "displayName": "Guest",
+      "avatar": "./image/guest.png",
+      "message": "test"
+    }
+  ]
+}
