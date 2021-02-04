@@ -42,6 +42,12 @@ socket.on("connect", () => {
     }
   };
 
+  chatInput.onkeypress = (event) =>  {
+    if(event.code === 'Enter') {
+      chat();
+    }
+  };
+
   socket.on("old-messages", (oldMessages) => {
     renderOldChat(oldMessages);
   });
