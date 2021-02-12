@@ -4,10 +4,14 @@ WORKDIR /usr/src/app
 
 COPY server/package*.json server/
 
-RUN cd server && npm i
+WORKDIR /usr/src/app/server
+
+RUN npm i
 
 COPY . .
 
 EXPOSE 3000
 
-CMD cd server && npm start
+VOLUME [ "/user/src/app" ]
+
+CMD npm run start
