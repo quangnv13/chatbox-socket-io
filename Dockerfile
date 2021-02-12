@@ -8,6 +8,6 @@ RUN cd server && npm i
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD cd server && npm start
