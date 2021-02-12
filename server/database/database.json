@@ -7,16 +7,10 @@
       "message": "Welcome to my chatbox"
     },
     {
-      "id": "RjrKVWuY+A!b38z",
-      "displayName": "Guest",
+      "id": "EEYA,BsvLyDS/lg",
+      "displayName": "Guest Test",
       "avatar": "./image/guest.png",
-      "message": "test"
-    },
-    {
-      "id": "bT0qrTq,hm5(IAJ",
-      "displayName": "Guest",
-      "avatar": "./image/guest.png",
-      "message": "tesst"
+      "message": "gửi thử"
     }
   ]
 }
