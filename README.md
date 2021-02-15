@@ -9,8 +9,8 @@ A simple web application using Nodejs and Socket.io for realtime chatbox.
 5. Enjoy...
 
 # With docker
-1. Build image ```docker build chatbox-socket-io:1.0.0 .```.
-2. Run container from created image ```docker run -d chatbox-socket-io:1.0.0 -p 8080:8080```.
+1. Pull image from my docker hub: ```docker pull quangnv1311/chatbox-socket-io``` or build an image with Dockerfile.
+2. Run container from created image ```docker run -d chatbox-socket-io -p 3000:3000```.
 3. Enjoy...
 
 # More
